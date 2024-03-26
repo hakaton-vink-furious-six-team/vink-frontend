@@ -57,7 +57,15 @@
     "no-underscore-dangle": "off",
     "no-param-reassign": "off",
     "react/display-name": "off",
-    "@typescript-eslint/ban-ts-comment": "warn"
+    "@typescript-eslint/ban-ts-comment": "warn",
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        "required": {
+          "some": ["nesting", "id"]
+        }
+      }
+    ]
   },
   "overrides": [
     {

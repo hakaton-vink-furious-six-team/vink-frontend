@@ -1,0 +1,64 @@
+.messages {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  height: 300px;
+  overflow-y: auto;
+}
+
+.messageForm {
+  display: flex;
+
+  .messageInput,
+  .sendMessageButton {
+    padding: 8px;
+    margin: 4px;
+  }
+}
+
+$userMessageColor: #f0f0f0;
+$botMessageColor: #e0e0e0;
+
+.userMessage,
+.botMessage {
+  max-width: 80%;
+  word-wrap: break-word;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 10px;
+  display: block;
+
+  &.userMessage {
+    align-self: flex-end;
+    background-color: $userMessageColor;
+  }
+
+  &.botMessage {
+    align-self: flex-start;
+    background-color: $botMessageColor;
+  }
+}
+
+.emojiToggle {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+}
+
+.emojiPanel {
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  bottom: 50px;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  padding: 5px;
+
+  .emoji {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+  }
+}
