@@ -11,15 +11,16 @@ function ChatWidget() {
   const dispatch = useAppDispatch();
 
   const isOpen = useAppSelector(selectIsOpen);
-  const isFormSubmitted = useAppSelector(selectIsSubmitted)
+  const isFormSubmitted = useAppSelector(selectIsSubmitted);
 
   return (
     <div className={styles.widget}>
       <OpenChatButton />
-      {isOpen &&
+      {isOpen && (
         <div className={styles.window}>
           {!isFormSubmitted ? <Form onSubmit={(data: IUserFormData) => dispatch(setSubmitted())} /> : <Chat />}
-        </div>}
+        </div>
+      )}
     </div>
   );
 }

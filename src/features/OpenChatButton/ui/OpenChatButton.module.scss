@@ -1,3 +1,81 @@
-.button {
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(0 0 0 / 20%);
+  }
+
+  70% {
+    box-shadow: 0 0 0 15px rgb(0 0 0 / 0%);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgb(0 0 0 / 0%);
+  }
+}
+
+.container {
+  position: relative;
+
+  .button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 66px;
+    width: 66px;
+    border-radius: 50%;
+    border: none;
+    background-color: #f9d156;
     cursor: pointer;
+
+    &.expanded {
+      background-color: rgb(5 5 5 / 15%);
+    }
+
+    &:hover {
+      animation: pulse 1.5s infinite;
+    }
+  }
+
+  .additionalButtonContainer {
+    position: absolute;
+    bottom: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.3s,
+      transform 0.3s,
+      visibility 0.3s;
+    transform: translateY(50px);
+
+    &.expanded {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(-10px);
+    }
+  }
+
+  .tgIcon,
+  .chatIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 66px;
+    width: 66px;
+    border-radius: 50%;
+    border: none;
+    background-color: #f9d156;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition:
+      background-color 0.3s,
+      transform 0.3s;
+  }
+
+  .tgIcon {
+    background-color: black;
+  }
+
+  .tgIcon:hover,
+  .chatIcon:hover {
+    animation: pulse 1.5s infinite;
+  }
 }
