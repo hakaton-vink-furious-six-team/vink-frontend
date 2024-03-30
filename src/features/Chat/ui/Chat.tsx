@@ -1,13 +1,8 @@
 import type React from 'react';
 import { useState } from 'react';
+import { type IMessage } from '../model/types/Message';
 import styles from './Chat.module.scss';
-import { emojiList } from '../../utils/utils';
-
-interface IMessage {
-  text: string;
-  sender: 'user' | 'bot';
-  timestamp: number;
-}
+import { emojiList } from '../utils/utils';
 
 function Chat() {
   const [message, setMessage] = useState<string>('');

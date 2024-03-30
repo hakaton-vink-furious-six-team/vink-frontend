@@ -1,7 +1,11 @@
-import './App.css';
+import ChatWidget from "../../widgets";
 
 function App() {
-  return <div className="App">Не Хуй</div>;
+  return (
+    <div>
+      <ChatWidget />
+    </div>
+  );
 }
 
 export default App;

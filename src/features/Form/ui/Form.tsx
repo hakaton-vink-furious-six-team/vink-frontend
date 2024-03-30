@@ -1,6 +1,6 @@
 import type React from 'react';
+import { type IUserFormData } from '../model/types/FormData';
 import styles from './Form.module.scss';
-import type { IUserFormData } from '../../types/types';
 
 interface FormProps {
   onSubmit: (userData: IUserFormData) => void; // Изменение типа для пропа onSubmit
