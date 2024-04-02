@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useAppDispatch } from '../../../app/store/hooks';
 import { clickButton } from '../model/ButtonStateSlice';
+import { ReactComponent as ChatIcon } from '../assets/chat.svg';
+import { ReactComponent as TgIcon } from '../assets/tg.svg';
+import { ReactComponent as CloseIcon } from '../assets/close.svg';
 import styles from './OpenChatButton.module.scss';
-import { ReactComponent as ChatIcon } from '../../../image/chat.svg';
-import { ReactComponent as TgIcon } from '../../../image/tg.svg';
-import { ReactComponent as CloseIcon } from '../../../image/close.svg';
 
 function OpenChatButton() {
   const dispatch = useAppDispatch();

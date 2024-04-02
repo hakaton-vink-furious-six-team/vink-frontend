@@ -1,32 +1,46 @@
+.chat {
+  background-color: white;
+}
+
 .messages {
   display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-  height: 300px;
+  flex-direction: column-reverse;
+  height: 364px;
   overflow-y: auto;
 }
 
 .messageForm {
   display: flex;
+  flex-direction: column;
+  border-top: 1px solid #D0E9FA;
 
-  .messageInput,
-  .sendMessageButton {
-    padding: 8px;
-    margin: 4px;
+
+  .messageInput {
+    border: 0;
+    min-height: 65px;
+    padding: 10px;
+    max-width: 100%;
+    resize: none;
+    box-sizing: border-box;
+    outline: none;
   }
+
 }
 
-$userMessageColor: #f0f0f0;
-$botMessageColor: #e0e0e0;
+$userMessageColor: #D4EEFD;
+$botMessageColor: #BABFC3;
 
 .userMessage,
 .botMessage {
+  display: flex;
+  flex-direction: column;
   max-width: 80%;
+  margin: 0 10px 10px;
+  padding: 10px 15px;
+  border-radius: 14px;
+  border: 1px solid #BABFC3;
   word-wrap: break-word;
-  margin: 5px;
-  padding: 10px;
-  border-radius: 10px;
-  display: block;
+
 
   &.userMessage {
     align-self: flex-end;
@@ -37,13 +51,35 @@ $botMessageColor: #e0e0e0;
     align-self: flex-start;
     background-color: $botMessageColor;
   }
+
+  .titleWrapper {
+    display: flex;
+    margin-bottom: 5px;
+    font-size: 12px;
+
+    p {
+      margin: 0;
+    }
+
+    .timestamp {
+      color: #BABFC3;
+      word-wrap: break-word;
+      align-self: center;
+    }
+
+    .sender {
+      color: #5E5F5E;
+      margin-right: 5px;
+    }
+  }
 }
 
-.emojiToggle {
+.button {
   cursor: pointer;
   background-color: transparent;
   border: none;
   font-size: 24px;
+  outline: none;
 }
 
 .emojiPanel {

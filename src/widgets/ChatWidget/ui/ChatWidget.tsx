@@ -18,7 +18,8 @@ function ChatWidget() {
       <OpenChatButton />
       {isOpen && (
         <div className={styles.window}>
-          {!isFormSubmitted ? <Form onSubmit={(data: IUserFormData) => dispatch(setSubmitted())} /> : <Chat />}
+          <Chat />
+          {/* {!isFormSubmitted ? <Form onSubmit={(data: IUserFormData) => dispatch(setSubmitted())} /> : } */}
         </div>
       )}
     </div>
