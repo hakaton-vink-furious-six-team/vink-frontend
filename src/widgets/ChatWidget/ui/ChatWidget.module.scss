@@ -1,19 +1,75 @@
+@keyframes slide-in {
+  from {
+    transform: translateX(100%) translateY(100%); // Стартуем за пределами экрана по обеим осям
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0) translateY(0); // Возвращаемся в исходное положение
+    opacity: 1;
+  }
+}
+
 .widget {
   position: fixed;
   bottom: 20px;
   right: 20px;
   z-index: 1000;
 
+  .custom_handle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #1153aa;
+    opacity: 0.75;
+    border-radius: 4px;
+  }
+
+  .custom_handle_nw {
+    top: -4px;
+    left: -4px;
+    cursor: nw-resize;
+  }
+
   .window {
-    width: 300px;
+    width: 330px;
     height: 400px;
-    background-color: rgb(222 211 211);
+    background-color: #f5fcfe;
     box-shadow: 0 0 10px rgb(0 0 0 / 20%);
-    padding: 20px;
+    border-radius: 5px;
     position: fixed;
-    bottom: 60px;
-    right: 20px;
+    bottom: 90px;
+    right: 90px;
     display: flex;
     flex-direction: column;
+    animation: slide-in 0.5s ease-out forwards;
+    transform: translateX(100%) translateY(100%);
+    opacity: 0;
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      background-color: #f9d156;
+      border-radius: 5px;
+      padding: 15px 10px;
+
+      .title {
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16.94px;
+      }
+
+      .closeChat {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background-color: transparent;
+        padding: 0;
+        cursor: pointer;
+      }
+    }
   }
 }
