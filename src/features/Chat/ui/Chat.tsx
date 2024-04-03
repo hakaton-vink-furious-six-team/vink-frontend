@@ -1,4 +1,5 @@
 import type React from 'react';
+import type { ChangeEvent } from 'react';
 import { useState } from 'react';
 import { type IMessage } from '../model/types/Message';
 import { emojiList } from '../utils/utils';
@@ -45,6 +46,9 @@ function Chat() {
     setShowEmojis(false);
   };
 
+  const handleFileAdd = (e: ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.target;
+  }
 
   return (
     <div className={styles.chat}>
@@ -55,7 +59,7 @@ function Chat() {
           msg.sender === 'user' ?
             <div
               key={`${msg.sender}-${msg.timestamp}`}
-              className={styles.userMessage}>
+              className={styles.botMessage}>
 
               <div className={styles.titleWrapper}>
                 <p className={styles.timestamp}>

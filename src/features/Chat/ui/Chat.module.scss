@@ -28,7 +28,7 @@
 }
 
 $userMessageColor: #D4EEFD;
-$botMessageColor: #BABFC3;
+$botMessageColor: white;
 
 .userMessage,
 .botMessage {
@@ -40,6 +40,18 @@ $botMessageColor: #BABFC3;
   border-radius: 14px;
   border: 1px solid #BABFC3;
   word-wrap: break-word;
+  opacity: 0;
+  animation: fade 0.4s ease-in forwards;
+
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
 
 
   &.userMessage {
