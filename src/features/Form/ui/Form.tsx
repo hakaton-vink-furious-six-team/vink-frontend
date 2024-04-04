@@ -23,20 +23,28 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
   return (
     <form className={styles.form} onSubmit={handleFormSubmit}>
       <div className={styles.formGroup}>
-        <label htmlFor="name">Имя:</label>
+        <label className={styles.label} htmlFor="name">
+          Имя:
+        </label>
         <input type="text" id="name" name="name" required placeholder="Введите ваше имя" />
       </div>
       <div className={styles.formGroup}>
-        <label htmlFor="email">Email:</label>
-        <input type="email" id="email" name="email" required placeholder="Введите ваш email" />
+        <label className={styles.label} htmlFor="name">
+          Название компании:
+        </label>
+        <input type="text" id="name" name="name" required placeholder="Введите ваше имя" />
       </div>
       <div className={styles.formGroup}>
-        <label htmlFor="phone">Телефон:</label>
+        <label className={styles.label} htmlFor="phone">
+          Телефон:
+        </label>
         <input type="tel" id="phone" name="phone" required placeholder="Введите ваш номер телефона" />
       </div>
       <div className={styles.formGroup}>
+        <label className={styles.label} htmlFor="dataProcessingConsent">
+          Согласен на обработку персональных данных
+        </label>
         <input type="checkbox" id="dataProcessingConsent" name="dataProcessingConsent" required />
-        <label htmlFor="dataProcessingConsent">Согласен на обработку персональных данных</label>
       </div>
       <div className={styles.formGroup}>
         <button type="submit" className={styles.submitButton}>

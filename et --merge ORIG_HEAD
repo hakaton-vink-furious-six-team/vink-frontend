@@ -1,0 +1,72 @@
+[33mcommit 673edd79125f5cb929165e82b0416282a4e56ef4[m[33m ([m[1;36mHEAD -> [m[1;32mdev[m[33m, [m[1;31morigin/dev[m[33m)[m
+Merge: ea14fa7 9d32a14
+Author: Didsen1 <tihanovart@gmail.com>
+Date:   Thu Apr 4 17:03:59 2024 +0300
+
+    Merge branch 'dev-lev' into dev
+
+[33mcommit ea14fa7b5fa839ab626d66c5e3faa7dcb33ca910[m[33m ([m[1;31morigin/chat-dev[m[33m, [m[1;32mchat-dev[m[33m)[m
+Author: Didsen1 <tihanovart@gmail.com>
+Date:   Thu Apr 4 16:44:21 2024 +0300
+
+    Final
+
+[33mcommit 9d32a141c1675834ee9d339df6a3e65bf626582c[m[33m ([m[1;31morigin/dev-lev[m[33m, [m[1;32mdev-lev[m[33m)[m
+Author: Lev Smirnov <levsmirnov2015@mail.ru>
+Date:   Thu Apr 4 09:20:59 2024 +0500
+
+    fix window scaling
+
+[33mcommit 73a3372a81f613783e7971ef35435cf9513651ff[m
+Author: Didsen1 <tihanovart@gmail.com>
+Date:   Wed Apr 3 22:07:55 2024 +0300
+
+    Recorded ready parts before refactoring
+
+[33mcommit 6f2782aa4548ca191cc26472375982cebd3e04f3[m
+Author: Lev Smirnov <levsmirnov2015@mail.ru>
+Date:   Wed Apr 3 17:29:59 2024 +0500
+
+    window styling
+
+[33mcommit b29e5031f1701f4639bebe1eda840d60014d699f[m
+Author: Didsen1 <tihanovart@gmail.com>
+Date:   Tue Apr 2 03:18:15 2024 +0300
+
+    Refactored code, updated chat layout to match new design
+
+[33mcommit 28786b982083cfe1f80a66f86310696bec10a10a[m
+Author: Lev Smirnov <levsmirnov2015@mail.ru>
+Date:   Sat Mar 30 12:25:12 2024 +0500
+
+    Stylization of the chat call buttons
+
+[33mcommit 6a08a3d26c414656b9c5580e1133a105d962c2a5[m
+Author: Didsen1 <tihanovart@gmail.com>
+Date:   Sat Mar 30 05:42:37 2024 +0300
+
+    Refactor: Restructure project and integrate Redux slices
+
+[33mcommit 48f06fc5737401bc5169aa1e956e6c7ade401eee[m
+Author: Lev Smirnov <levsmirnov2015@mail.ru>
+Date:   Tue Mar 26 12:02:24 2024 +0500
+
+    prototype
+
+[33mcommit 4b652bfe5f910818347be4370d5a8987672f23d4[m
+Author: Артем Тиханов <tihanovart@gmail.com>
+Date:   Sun Mar 24 14:52:11 2024 +0300
+
+    Update App.tsx
+
+[33mcommit 0b4b0aa1c3bd58d576e63b74d7a18c804a8f7685[m
+Author: Didsen1 <tihanovart@gmail.com>
+Date:   Fri Mar 22 02:01:52 2024 +0300
+
+    Project initialization: linter, printer, Husky and basic structure
+
+[33mcommit a8e28469e78ac173c887f9b1ca6b2ee5f7685060[m[33m ([m[1;32mmaster[m[33m)[m
+Author: Didsen1 <tihanovart@gmail.com>
+Date:   Thu Mar 21 13:57:08 2024 +0300
+
+    Initialize project using Create React App
