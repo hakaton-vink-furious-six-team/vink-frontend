@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { type IMessage } from '../model/types/Message';
 import { emojiList } from '../utils/utils';
 import { ReactComponent as EmojiListIcon } from '../assets/emoji.svg'
-import { ReactComponent as AddButtonIcon } from '../assets/add.svg'
 import styles from './Chat.module.scss';
 
 function Chat() {
@@ -45,10 +44,6 @@ function Chat() {
     setMessage(message + emoji);
     setShowEmojis(false);
   };
-
-  const handleFileAdd = (e: ChangeEvent<HTMLInputElement>) => {
-    const { files } = e.target;
-  }
 
   return (
     <div className={styles.chat}>
@@ -108,21 +103,11 @@ function Chat() {
 
         <div>
           <button
-            aria-label="Добавить файл"
-            type="button" onClick={() => setShowEmojis(!showEmojis)} className={styles.button} >
-            <AddButtonIcon />
-          </button>
-          <button
             aria-label="Открыть список эмодзи"
             type="button" onClick={() => setShowEmojis(!showEmojis)} className={styles.button} >
             <EmojiListIcon />
           </button>
         </div>
-
-
-        {/* <button type="submit" className={styles.sendMessageButton}>
-          Отправить
-        </button> */}
 
       </form>
 
