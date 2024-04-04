@@ -4,26 +4,28 @@
   gap: 10px;
 
   .formGroup {
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
   }
 
-  label,
-  input,
-  button {
-    margin-bottom: 5px;
+  .label {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.94px;
   }
 
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
+  input[type='text'],
+  input[type='email'],
+  input[type='tel'],
   button {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
   }
 
-  input[type="checkbox"] {
+  input[type='checkbox'] {
     margin-right: 5px;
   }
 
