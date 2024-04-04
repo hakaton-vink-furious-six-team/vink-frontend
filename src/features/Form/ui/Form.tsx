@@ -29,6 +29,12 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
         <input type="text" id="name" name="name" required placeholder="Введите ваше имя" />
       </div>
       <div className={styles.formGroup}>
+        <label className={styles.label} htmlFor="name">
+          Название компании:
+        </label>
+        <input type="text" id="name" name="name" required placeholder="Введите ваше имя" />
+      </div>
+      <div className={styles.formGroup}>
         <label className={styles.label} htmlFor="phone">
           Телефон:
         </label>

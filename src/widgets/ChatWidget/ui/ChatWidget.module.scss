@@ -20,14 +20,14 @@
     position: absolute;
     width: 8px;
     height: 8px;
-    background-color: #1153aa;
+    background-image: url('../../../image/arrow.svg');
     opacity: 0.75;
     border-radius: 4px;
   }
 
   .custom_handle_nw {
-    top: -4px;
-    left: -4px;
+    top: 1px;
+    left: 1px;
     cursor: nw-resize;
   }
 

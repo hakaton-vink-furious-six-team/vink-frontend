@@ -4,13 +4,16 @@
   gap: 10px;
 
   .formGroup {
-    margin-top: 25px;
+    margin-top: 15px;
     display: flex;
     flex-direction: column;
   }
 
   .label {
     text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.94px;
   }
 
   input[type='text'],
