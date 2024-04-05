@@ -12,8 +12,7 @@
 .messageForm {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid #D0E9FA;
-
+  border-top: 1px solid #d0e9fa;
 
   .messageInput {
     border: 0;
@@ -24,10 +23,9 @@
     box-sizing: border-box;
     outline: none;
   }
-
 }
 
-$userMessageColor: #D4EEFD;
+$userMessageColor: #d4eefd;
 $botMessageColor: white;
 
 .userMessage,
@@ -38,7 +36,7 @@ $botMessageColor: white;
   margin: 0 10px 10px;
   padding: 10px 15px;
   border-radius: 14px;
-  border: 1px solid #BABFC3;
+  border: 1px solid #babfc3;
   word-wrap: break-word;
   opacity: 0;
   animation: fade 0.4s ease-in forwards;
@@ -52,7 +50,6 @@ $botMessageColor: white;
       opacity: 1;
     }
   }
-
 
   &.userMessage {
     align-self: flex-end;
@@ -74,13 +71,13 @@ $botMessageColor: white;
     }
 
     .timestamp {
-      color: #BABFC3;
+      color: #babfc3;
       word-wrap: break-word;
       align-self: center;
     }
 
     .sender {
-      color: #5E5F5E;
+      color: #5e5f5e;
       margin-right: 5px;
     }
   }
@@ -92,7 +89,6 @@ $botMessageColor: white;
   border: none;
   font-size: 24px;
   outline: none;
-
 }
 
 .emojiPanel {

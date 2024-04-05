@@ -12,7 +12,7 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
     const formData = new FormData(e.currentTarget);
     const userData = {
       name: formData.get('name') as string,
-      email: formData.get('email') as string,
+      company: formData.get('company') as string,
       phone: formData.get('phone') as string,
       consent: formData.get('dataProcessingConsent') === 'on',
     };
@@ -32,7 +32,7 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
         <label className={styles.label} htmlFor="name">
           Название компании:
         </label>
-        <input type="text" id="name" name="name" required placeholder="Введите ваше имя" />
+        <input type="text" id="company" name="company" required placeholder="Введите название Вашей компании" />
       </div>
       <div className={styles.formGroup}>
         <label className={styles.label} htmlFor="phone">
