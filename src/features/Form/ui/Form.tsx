@@ -1,8 +1,7 @@
 import type React from 'react';
-import { useAppDispatch } from '../../../app/store/hooks';
 import { type IUserFormData } from '../model/types/FormData';
 import { postForm } from '../../../shared/api/formApi';
-import chatNameSlice from '../../../entity/chatName/chatNameSlice';
+import { useAppDispatch } from '../../../app/store/hooks';
 import styles from './Form.module.scss';
 
 interface FormProps {
@@ -10,9 +9,22 @@ interface FormProps {
 }
 
 const Form: React.FC<FormProps> = ({ onSubmit }) => {
-
   const dispatch = useAppDispatch();
 
+  interface SleceUpdate {
+    name: string,
+    phone_number: string
+  }
+
+  const handleSliceUpdate = ({ name, phone_number }: SleceUpdate) => {
+
+    try {
+      dispatch(postForm({ name, phone_number }))
+    } catch (error) {
+      console.error('Ошибка при запросе postForm:', error);
+    }
+
+  }
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
@@ -28,16 +40,12 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
       phone: formData.get('phone') as string,
       consent: formData.get('dataProcessingConsent') === 'on',
     };
-
-    try {
-      dispatch(postForm({ name, phone_number }))
-    } catch (error) {
-      console.error('Ошибка при отправке формы:', error);
-    }
+    handleSliceUpdate({ name, phone_number })
 
     onSubmit(userData);
 
   };
+
 
   return (
     <form className={styles.form} onSubmit={handleFormSubmit}>

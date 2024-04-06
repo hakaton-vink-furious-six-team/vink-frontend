@@ -1,14 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { postForm } from "../../shared/api/formApi";
+import type { RootState } from "../../app/store/store";
 
 interface SliceState {
-  data: null;
+  chatName: null;
   loading: boolean;
   error: null | string;
 }
 
 const initialState: SliceState = {
-  data: null,
+  chatName: null,
   loading: false,
   error: null,
 };
@@ -28,7 +29,8 @@ const chatNameSlice = createSlice({
       // Редуктор для успешного завершения отправки формы
       .addCase(postForm.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload; // Сохраняем данные о chat_name
+        state.error = null;
+        state.chatName = action.payload;// Сохраняем данные о chat_name
       })
       // Редуктор для ошибки при отправке формы
       .addCase(postForm.rejected, (state, action) => {
@@ -38,4 +40,6 @@ const chatNameSlice = createSlice({
   },
 })
 
+
+export const chatNameValue = (state: RootState) => state.chatName.chatName;
 export default chatNameSlice.reducer;

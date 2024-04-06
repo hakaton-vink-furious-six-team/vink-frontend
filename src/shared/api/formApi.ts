@@ -23,8 +23,6 @@ export const postForm = createAsyncThunk(
         return thunkApi.rejectWithValue({ message: errorMessage, code: response.status })
       }
       const responseData = await response.json()
-      console.log(responseData)
-      console.log(responseData.chat_name)
       return responseData.chat_name;
     }
     catch (error: any) {

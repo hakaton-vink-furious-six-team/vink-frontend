@@ -4,12 +4,15 @@ import { useState } from 'react';
 import { type IMessage } from '../model/types/Message';
 import { emojiList } from '../utils/utils';
 import { ReactComponent as EmojiListIcon } from '../assets/emoji.svg'
+import { chatNameValue } from '../../../entity/chatName/chatNameSlice';
+import { useAppSelector } from '../../../app/store/hooks';
 import styles from './Chat.module.scss';
 
 function Chat() {
   const [message, setMessage] = useState<string>('');
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [showEmojis, setShowEmojis] = useState<boolean>(false);
+  const chatRoom = useAppSelector(chatNameValue);
 
   const handleMessageSubmit = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     e.preventDefault();
