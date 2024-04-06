@@ -79,3 +79,27 @@
     animation: pulse 1.5s infinite;
   }
 }
+
+@media (width <= 890px) {
+  .container {
+    position: relative;
+
+    .button {
+      height: 43px;
+      width: 43px;
+    }
+
+    .additionalButtonContainer {
+      &.expanded {
+        transform: translateY(0);
+      }
+    }
+
+    .tgIcon,
+    .chatIcon {
+      height: 43px;
+      width: 43px;
+      margin-bottom: 5px;
+    }
+  }
+}

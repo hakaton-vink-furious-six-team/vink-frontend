@@ -32,8 +32,6 @@
   }
 
   .window {
-    width: 330px;
-    height: 400px;
     background-color: #f5fcfe;
     box-shadow: 0 0 10px rgb(0 0 0 / 20%);
     border-radius: 5px;
@@ -69,6 +67,39 @@
         background-color: transparent;
         padding: 0;
         cursor: pointer;
+      }
+    }
+  }
+}
+
+@media (width <= 890px) {
+  .widget {
+    bottom: 2px;
+    right: 2px;
+
+    .custom_handle {
+      display: none;
+    }
+
+    .window {
+      box-shadow: 0 0 10px rgb(0 0 0 / 20%);
+      border-radius: 5px;
+      bottom: 20px;
+      right: 50px;
+
+      .header {
+        padding: 8px 4px;
+
+        .title {
+          font-size: 10px;
+          font-weight: 400;
+          line-height: 13px;
+        }
+
+        .closeChat {
+          width: 10px;
+          height: 10px;
+        }
       }
     }
   }
