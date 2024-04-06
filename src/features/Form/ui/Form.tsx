@@ -1,5 +1,8 @@
 import type React from 'react';
+import { useAppDispatch } from '../../../app/store/hooks';
 import { type IUserFormData } from '../model/types/FormData';
+import { postForm } from '../../../shared/api/formApi';
+import chatNameSlice from '../../../entity/chatName/chatNameSlice';
 import styles from './Form.module.scss';
 
 interface FormProps {
@@ -7,9 +10,18 @@ interface FormProps {
 }
 
 const Form: React.FC<FormProps> = ({ onSubmit }) => {
+
+  const dispatch = useAppDispatch();
+
+
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
+
     const formData = new FormData(e.currentTarget);
+
+    const name = formData.get('name') as string;
+    const phone_number = formData.get('phone') as string;
+
     const userData = {
       name: formData.get('name') as string,
       company: formData.get('company') as string,
@@ -17,7 +29,14 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
       consent: formData.get('dataProcessingConsent') === 'on',
     };
 
+    try {
+      dispatch(postForm({ name, phone_number }))
+    } catch (error) {
+      console.error('Ошибка при отправке формы:', error);
+    }
+
     onSubmit(userData);
+
   };
 
   return (
