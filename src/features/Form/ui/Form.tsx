@@ -57,7 +57,15 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
         <label className={styles.label} htmlFor="phone">
           Телефон:
         </label>
-        <input type="tel" id="phone" name="phone" required placeholder="Введите ваш номер телефона" />
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          required
+          placeholder="+7(___)___-____"
+          pattern="\+7\d{10}"
+          title="Номер телефона должен начинаться с +7 и содержать 10 цифр после +7"
+        />
       </div>
       <div className={styles.formGroup}>
         <label className={styles.label} htmlFor="dataProcessingConsent">

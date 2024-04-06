@@ -42,3 +42,38 @@
     }
   }
 }
+
+@media (width <= 890px) {
+  .form {
+    gap: 5px;
+
+    .formGroup {
+      margin-top: 10px;
+    }
+
+    .label {
+      font-size: 10px;
+      font-weight: 400;
+      line-height: 13px;
+    }
+
+    input[type='text'],
+    input[type='email'],
+    input[type='tel'],
+    button {
+      font-size: 10px;
+      font-weight: 400;
+      line-height: 13px;
+      padding: 6px;
+    }
+
+    .submitButton {
+      padding: 7px;
+      font-size: 13px;
+
+      &:hover {
+        background-color: #45a049;
+      }
+    }
+  }
+}
