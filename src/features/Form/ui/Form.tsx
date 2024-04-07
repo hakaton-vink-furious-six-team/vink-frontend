@@ -12,19 +12,17 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
   const dispatch = useAppDispatch();
 
   interface SleceUpdate {
-    name: string,
-    phone_number: string
+    name: string;
+    phone_number: string;
   }
 
   const handleSliceUpdate = ({ name, phone_number }: SleceUpdate) => {
-
     try {
-      dispatch(postForm({ name, phone_number }))
+      dispatch(postForm({ name, phone_number }));
     } catch (error) {
       console.error('Ошибка при запросе postForm:', error);
     }
-
-  }
+  };
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
@@ -40,12 +38,10 @@ const Form: React.FC<FormProps> = ({ onSubmit }) => {
       phone: formData.get('phone') as string,
       consent: formData.get('dataProcessingConsent') === 'on',
     };
-    handleSliceUpdate({ name, phone_number })
+    handleSliceUpdate({ name, phone_number });
 
     onSubmit(userData);
-
   };
-
 
   return (
     <form className={styles.form} onSubmit={handleFormSubmit}>

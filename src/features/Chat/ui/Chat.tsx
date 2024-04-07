@@ -1,9 +1,9 @@
 import type React from 'react';
 import type { ChangeEvent } from 'react';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { type IMessage } from '../model/types/Message';
 import { emojiList } from '../utils/utils';
-import { ReactComponent as EmojiListIcon } from '../assets/emoji.svg'
+import { ReactComponent as EmojiListIcon } from '../assets/emoji.svg';
 import { chatNameValue } from '../../../entity/chatName/chatNameSlice';
 import { useAppSelector } from '../../../app/store/hooks';
 import styles from './Chat.module.scss';
@@ -13,10 +13,27 @@ function Chat() {
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [showEmojis, setShowEmojis] = useState<boolean>(false);
   const chatRoom = useAppSelector(chatNameValue);
+  const socket = useRef<WebSocket | null>(null);
+
+  useEffect(() => {
+    // Инициализация WebSocket соединения
+    socket.current = new WebSocket('ws://127.0.0.1:8000/ws/chat/2/');
+    socket.current.onopen = () => console.log('Соединение установлено');
+    socket.current.onmessage = (event) => {
+      const receivedMessage: IMessage = JSON.parse(event.data);
+      setMessages((prevMessages) => [...prevMessages, receivedMessage]);
+    };
+    socket.current.onclose = () => console.log('Соединение закрыто');
+    socket.current.onerror = (error) => console.error('Ошибка соединения', error);
+
+    return () => {
+      socket.current?.close();
+    };
+  }, []);
 
   const handleMessageSubmit = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     e.preventDefault();
-    if (!message.trim()) return; // Предотвращаем отправку пустых сообщений
+    if (!message.trim() || !socket.current) return;
 
     const newMessage: IMessage = {
       text: message,
@@ -24,24 +41,26 @@ function Chat() {
       timestamp: Date.now(),
     };
 
-    setMessages([newMessage, ...messages]); // Добавляем сообщение пользователя в список
-    // Здесь можно отправить сообщение на сервер и получить ответ от чат-бота
+    socket.current.send(JSON.stringify(newMessage));
+    setMessages((prevMessages) => [newMessage, ...prevMessages]);
     setMessage('');
   };
 
-  const getDate = (timestamp: number) => { // преобразовываю дату в читаемый формат
+  const getDate = (timestamp: number) => {
+    // преобразовываю дату в читаемый формат
     const date = new Date(timestamp);
     const hours = date.getHours().toString().padStart(2, '0');
     const minutes = date.getMinutes().toString().padStart(2, '0');
-    return (`${hours}:${minutes}`);
-  }
+    return `${hours}:${minutes}`;
+  };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => { // Отслеживаем нажатые кнопки в textarea, чтобы прожать сабмит на Enter
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    // Отслеживаем нажатые кнопки в textarea, чтобы прожать сабмит на Enter
     if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault()
+      e.preventDefault();
       handleMessageSubmit(e);
     }
-  }
+  };
 
   const addEmoji = (emoji: string) => {
     setMessage(message + emoji);
@@ -50,38 +69,25 @@ function Chat() {
 
   return (
     <div className={styles.chat}>
-
       <div className={styles.messages}>
-        {messages.map((msg) => (
-
-          msg.sender === 'user' ?
-            <div
-              key={`${msg.sender}-${msg.timestamp}`}
-              className={styles.botMessage}>
-
+        {messages.map((msg) =>
+          msg.sender === 'user' ? (
+            <div key={`${msg.sender}-${msg.timestamp}`} className={styles.userMessage}>
               <div className={styles.titleWrapper}>
-                <p className={styles.timestamp}>
-                  {getDate(msg.timestamp)}
-                </p>
+                <p className={styles.timestamp}>{getDate(msg.timestamp)}</p>
               </div>
 
               {msg.text}
-
             </div>
-            :
-            <div
-              key={`${msg.sender}-${msg.timestamp}`}
-              className={styles.botMessage}>
-
+          ) : (
+            <div key={`${msg.sender}-${msg.timestamp}`} className={styles.botMessage}>
               <div className={styles.titleWrapper}>
                 <p className={styles.sender}>Аркадий Иванов</p>
-                <p className={styles.timestamp}>
-                  {getDate(msg.timestamp)}
-                </p>
+                <p className={styles.timestamp}>{getDate(msg.timestamp)}</p>
               </div>
-
             </div>
-        ))}
+          )
+        )}
       </div>
 
       {showEmojis && (
@@ -95,7 +101,6 @@ function Chat() {
       )}
 
       <form className={styles.messageForm}>
-
         <textarea
           value={message}
           onChange={(e) => setMessage(e.target.value)}
@@ -107,13 +112,14 @@ function Chat() {
         <div>
           <button
             aria-label="Открыть список эмодзи"
-            type="button" onClick={() => setShowEmojis(!showEmojis)} className={styles.button} >
+            type="button"
+            onClick={() => setShowEmojis(!showEmojis)}
+            className={styles.button}
+          >
             <EmojiListIcon />
           </button>
         </div>
-
       </form>
-
     </div>
   );
 }
