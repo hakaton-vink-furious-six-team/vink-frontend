@@ -9,19 +9,25 @@ import { useAppSelector } from '../../../app/store/hooks';
 import styles from './Chat.module.scss';
 
 function Chat() {
-  const [message, setMessage] = useState<string>('');
+  const [messageText, setMessage] = useState<string>('');
   const [messages, setMessages] = useState<IMessage[]>([]);
   const [showEmojis, setShowEmojis] = useState<boolean>(false);
   const chatRoom = useAppSelector(chatNameValue);
   const socket = useRef<WebSocket | null>(null);
 
+  interface socketMessage {
+    message: string;
+  }
+
   useEffect(() => {
     // Инициализация WebSocket соединения
-    socket.current = new WebSocket('ws://127.0.0.1:8000/ws/chat/2/');
+    socket.current = new WebSocket('ws://127.0.0.1:8000/ws/chat/5/');
     socket.current.onopen = () => console.log('Соединение установлено');
     socket.current.onmessage = (event) => {
       const receivedMessage: IMessage = JSON.parse(event.data);
-      setMessages((prevMessages) => [...prevMessages, receivedMessage]);
+      console.log(receivedMessage)
+      setMessages((prevMessages) => [receivedMessage, ...prevMessages]);
+      console.log(messages)
     };
     socket.current.onclose = () => console.log('Соединение закрыто');
     socket.current.onerror = (error) => console.error('Ошибка соединения', error);
@@ -33,15 +39,19 @@ function Chat() {
 
   const handleMessageSubmit = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     e.preventDefault();
-    if (!message.trim() || !socket.current) return;
+    if (!messageText.trim() || !socket.current) return;
+
+    const socketMessage: socketMessage = {
+      message: messageText
+    }
 
     const newMessage: IMessage = {
-      text: message,
+      message: messageText,
       sender: 'user',
       timestamp: Date.now(),
     };
 
-    socket.current.send(JSON.stringify(newMessage));
+    socket.current.send(JSON.stringify(socketMessage));
     setMessages((prevMessages) => [newMessage, ...prevMessages]);
     setMessage('');
   };
@@ -63,7 +73,7 @@ function Chat() {
   };
 
   const addEmoji = (emoji: string) => {
-    setMessage(message + emoji);
+    setMessage(messageText + emoji);
     setShowEmojis(false);
   };
 
@@ -76,8 +86,7 @@ function Chat() {
               <div className={styles.titleWrapper}>
                 <p className={styles.timestamp}>{getDate(msg.timestamp)}</p>
               </div>
-
-              {msg.text}
+              {msg.message}
             </div>
           ) : (
             <div key={`${msg.sender}-${msg.timestamp}`} className={styles.botMessage}>
@@ -85,6 +94,7 @@ function Chat() {
                 <p className={styles.sender}>Аркадий Иванов</p>
                 <p className={styles.timestamp}>{getDate(msg.timestamp)}</p>
               </div>
+              {msg.message}
             </div>
           )
         )}
@@ -102,7 +112,7 @@ function Chat() {
 
       <form className={styles.messageForm}>
         <textarea
-          value={message}
+          value={messageText}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Напишите сообщение..."
           className={styles.messageInput}
