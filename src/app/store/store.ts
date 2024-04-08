@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import ButtonStateSlice from '../../features/OpenChatButton/model/ButtonStateSlice';
+import ButtonStateSlice from '../../shared/model/StateSlice';
 import FormStateSlice from '../../features/Form/model/FormStateSlice';
 import AssesmentStateSlice from '../../features/Assessment/model/AssesmentStateSlice';
 import chatNameSlice from '../../entity/chatName/chatNameSlice';

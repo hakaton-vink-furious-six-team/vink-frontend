@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { type State } from '../../../shared/types/State';
-import type { RootState } from '../../../app/store/store';
+import { type State } from '../types/State';
+import type { RootState } from '../../app/store/store';
 
 const initialState: State = {
   isOpen: false,
   isAssesment: false,
 };
 
-const ButtonStateSlice = createSlice({
-  name: 'ButtonState',
+const StateSlice = createSlice({
+  name: 'StateSlice',
   initialState,
   reducers: {
     clickButton: (state) => {
@@ -24,7 +24,7 @@ const ButtonStateSlice = createSlice({
   },
 });
 
-export const { clickButton, closeChat, setSubmitted } = ButtonStateSlice.actions;
+export const { clickButton, closeChat, setSubmitted } = StateSlice.actions;
 export const selectIsOpen = (state: RootState) => state.buttonState.isOpen;
 export const selectIsAssesment = (state: RootState) => state.assesmentState.isAssesment;
-export default ButtonStateSlice.reducer;
+export default StateSlice.reducer;

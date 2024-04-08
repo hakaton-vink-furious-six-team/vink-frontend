@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAppDispatch } from '../../../app/store/hooks';
-import { clickButton } from '../model/ButtonStateSlice';
+import { clickButton } from '../../../shared/model/StateSlice';
 import { ReactComponent as ChatIcon } from '../assets/chat.svg';
 import { ReactComponent as TgIcon } from '../assets/tg.svg';
 import { ReactComponent as CloseIcon } from '../assets/close.svg';

@@ -1,17 +1,21 @@
 import { useEffect, useState } from 'react';
 import { ResizableBox } from 'react-resizable';
-import styles from './ChatWidget.module.scss';
-import { Form } from '../../../features/Form';
+
+import { store } from '../../../app/store/store';
+import { useAppSelector, useAppDispatch } from '../../../app/store/hooks';
+
 import Chat from '../../../features/Chat';
+import { Form } from '../../../features/Form';
+import { type IUserFormData } from '../../../features/Form';
+import { selectIsSubmitted, setSubmitted } from '../../../features/Form/model/FormStateSlice';
+
 import { Assessment } from '../../../features/Assessment';
 import { OpenChatButton } from '../../../features/OpenChatButton';
-import { selectIsOpen, closeChat, selectIsAssesment } from '../../../features/OpenChatButton/model/ButtonStateSlice';
-import { selectIsSubmitted, setSubmitted } from '../../../features/Form/model/FormStateSlice';
-import { useAppSelector, useAppDispatch } from '../../../app/store/hooks';
-import { type IUserFormData } from '../../../features/Form';
-import { ReactComponent as CloseChat } from '../../../features/OpenChatButton/assets/closeChat.svg';
+import { selectIsOpen, closeChat, selectIsAssesment } from '../../../shared/model/StateSlice';
+import { ReactComponent as CloseChat} from '../../assets/closeChat.svg'
 import { chatNameValue } from '../../../entity/chatName/chatNameSlice';
-import { store } from '../../../app/store/store';
+
+import styles from './ChatWidget.module.scss';
 
 function ChatWidget() {
   const dispatch = useAppDispatch();
