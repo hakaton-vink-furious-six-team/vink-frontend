@@ -1,10 +1,14 @@
 import type { FC } from 'react';
 import { useState } from 'react';
 import styles from './Assessment.module.scss';
+import { chatNameValue } from '../../../entity/chatName/chatNameSlice';
+import { useAppSelector } from '../../../app/store/hooks';
+import { assessmentApi } from '../../../shared/api/assessmentApi';
 import type { IAssessment } from '../model/types/Assessment';
 
 const Assessment: FC<IAssessment> = ({ onSubmit }) => {
   const [rating, setRating] = useState<number>(0);
+  const user_id = useAppSelector(chatNameValue);
 
   const handleRating = (rate: number) => {
     setRating(rate);
@@ -12,6 +16,8 @@ const Assessment: FC<IAssessment> = ({ onSubmit }) => {
 
   const handleSubmit = () => {
     if (onSubmit) {
+      console.log(rating, user_id)
+      assessmentApi({ rating, user_id })
       onSubmit(rating);
     }
   };
