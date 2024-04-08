@@ -22,7 +22,6 @@ function ChatWidget() {
   const isAssesment = selectIsAssesment(store.getState());
 
   const handleCloseChat = () => {
-    console.log(isFormSubmitted)
     if (isFormSubmitted) {
       setIsRatingRequested(true);
     }
@@ -32,8 +31,6 @@ function ChatWidget() {
   };
 
   const handleRatingSubmit = (rating: number) => {
-    console.log(`Пользователь поставил оценку: ${rating}`);
-    console.log(isAssesment)
     if (isAssesment) {
       dispatch(closeChat());
     }

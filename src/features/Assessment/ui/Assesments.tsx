@@ -19,9 +19,7 @@ const Assessment: FC<IAssessment> = ({ onSubmit }) => {
 
   const handleSubmit = async () => {
     if (onSubmit) {
-      console.log(rating, user_id)
       const responce = await assessmentApi({ rating, user_id })
-      console.log(responce)
       if (responce) {
         dispatch(setSubmitted())
       }
