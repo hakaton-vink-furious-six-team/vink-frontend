@@ -44,6 +44,15 @@
     transform: translateX(100%) translateY(100%);
     opacity: 0;
 
+    .rating {
+      position: absolute;
+      bottom: 100%;
+      left: 0;
+      right: 0;
+      transform: translateY(-4px);
+      z-index: 2;
+    }
+
     .header {
       display: flex;
       justify-content: space-between;
@@ -72,7 +81,7 @@
   }
 }
 
-@media (width <= 890px) {
+@media (width <=890px) {
   .widget {
     bottom: 2px;
     right: 2px;

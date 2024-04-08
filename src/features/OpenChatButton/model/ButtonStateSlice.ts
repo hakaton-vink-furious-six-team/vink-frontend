@@ -4,6 +4,7 @@ import type { RootState } from '../../../app/store/store';
 
 const initialState: State = {
   isOpen: false,
+  isAssesment: false,
 };
 
 const ButtonStateSlice = createSlice({
@@ -16,9 +17,14 @@ const ButtonStateSlice = createSlice({
     closeChat: (state) => {
       state.isOpen = !state.isOpen;
     },
+    setSubmitted: state => {
+      state.isAssesment = !state.isAssesment;
+      state.isOpen = !state.isOpen;
+    },
   },
 });
 
-export const { clickButton, closeChat } = ButtonStateSlice.actions;
+export const { clickButton, closeChat, setSubmitted } = ButtonStateSlice.actions;
 export const selectIsOpen = (state: RootState) => state.buttonState.isOpen;
+export const selectIsAssesment = (state: RootState) => state.assesmentState.isAssesment;
 export default ButtonStateSlice.reducer;

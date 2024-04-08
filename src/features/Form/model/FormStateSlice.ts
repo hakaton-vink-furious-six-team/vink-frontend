@@ -5,6 +5,7 @@ import type { RootState } from '../../../app/store/store';
 
 const initialState: State = {
   isOpen: false,
+  isAssesment: false,
 }
 
 const FormStateSlice = createSlice({

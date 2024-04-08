@@ -21,7 +21,7 @@ export const postForm = createAsyncThunk('form/postForm', async (formData: FormD
       return thunkApi.rejectWithValue({ message: errorMessage, code: response.status });
     }
     const responseData = await response.json();
-    console.log(responseData)
+    console.log(responseData);
     return responseData.chat_name;
   } catch (error: any) {
     const errorMessage = `Ошибка при запросе postForm: ${error.message}`;

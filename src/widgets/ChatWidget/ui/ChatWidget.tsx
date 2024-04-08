@@ -5,29 +5,40 @@ import { Form } from '../../../features/Form';
 import Chat from '../../../features/Chat';
 import { Assessment } from '../../../features/Assessment';
 import { OpenChatButton } from '../../../features/OpenChatButton';
-import { selectIsOpen, closeChat } from '../../../features/OpenChatButton/model/ButtonStateSlice';
+import { selectIsOpen, closeChat, selectIsAssesment } from '../../../features/OpenChatButton/model/ButtonStateSlice';
 import { selectIsSubmitted, setSubmitted } from '../../../features/Form/model/FormStateSlice';
 import { useAppSelector, useAppDispatch } from '../../../app/store/hooks';
 import { type IUserFormData } from '../../../features/Form';
 import { ReactComponent as CloseChat } from '../../../features/OpenChatButton/assets/closeChat.svg';
+import { chatNameValue } from '../../../entity/chatName/chatNameSlice';
+import { store } from '../../../app/store/store';
 
 function ChatWidget() {
   const dispatch = useAppDispatch();
-
+  const chatRoom = useAppSelector(chatNameValue);
   const [isRatingRequested, setIsRatingRequested] = useState(false);
+  const isOpen = useAppSelector(selectIsOpen);
+  const isFormSubmitted = useAppSelector(selectIsSubmitted);
+  const isAssesment = selectIsAssesment(store.getState());
 
   const handleCloseChat = () => {
-    dispatch(closeChat());
-    setIsRatingRequested(true);
+    console.log(isFormSubmitted)
+    if (isFormSubmitted) {
+      setIsRatingRequested(true);
+    }
+    else {
+      dispatch(closeChat())
+    }
   };
 
   const handleRatingSubmit = (rating: number) => {
     console.log(`Пользователь поставил оценку: ${rating}`);
+    console.log(isAssesment)
+    if (isAssesment) {
+      dispatch(closeChat());
+    }
     setIsRatingRequested(false);
   };
-
-  const isOpen = useAppSelector(selectIsOpen);
-  const isFormSubmitted = useAppSelector(selectIsSubmitted);
 
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
@@ -119,18 +130,28 @@ function ChatWidget() {
           handle={<span className={`${styles.custom_handle} ${styles.custom_handle_nw}`} />}
           handleSize={[8, 8]}
           minConstraints={minConstraints}
-          maxConstraints={[800, 550]}
+          maxConstraints={[594, 468]}
         >
-          <div className={styles.header}>
-            <h2 className={styles.title}>Чат с vink.ru</h2>
-            <button className={styles.closeChat} type="button" onClick={handleCloseChat} aria-label="закрыть чат">
-              <CloseChat />
-            </button>
+          <div>
+            <div className={styles.rating}>
+              {isRatingRequested && <Assessment onSubmit={handleRatingSubmit} />}
+            </div>
+            <div>
+              <div className={styles.header}>
+                <h2 className={styles.title}>Чат с vink.ru</h2>
+                <button className={styles.closeChat} type="button" onClick={handleCloseChat} aria-label="закрыть чат">
+                  <CloseChat />
+                </button>
+              </div>
+              {!isFormSubmitted || !chatRoom ? (
+                <Form onSubmit={(data: IUserFormData) => dispatch(setSubmitted())} />
+              ) : (
+                <Chat />
+              )}
+            </div>
           </div>
-          {!isFormSubmitted ? <Form onSubmit={(data: IUserFormData) => dispatch(setSubmitted())} /> : <Chat />}
         </ResizableBox>
       )}
-      {!isOpen && isRatingRequested && <Assessment onSubmit={handleRatingSubmit} />}
     </div>
   );
 }

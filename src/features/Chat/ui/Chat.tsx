@@ -1,6 +1,6 @@
 import type React from 'react';
-import type { ChangeEvent } from 'react';
 import { useEffect, useRef, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { type IMessage } from '../model/types/Message';
 import { emojiList } from '../utils/utils';
 import { ReactComponent as EmojiListIcon } from '../assets/emoji.svg';
@@ -21,16 +21,15 @@ function Chat() {
 
   useEffect(() => {
     // Инициализация WebSocket соединения
-    socket.current = new WebSocket('ws://127.0.0.1:8000/ws/chat/5/');
+    socket.current = new WebSocket(`ws://82.97.241.46/ws/chat/${chatRoom}/`);
     socket.current.onopen = () => console.log('Соединение установлено');
     socket.current.onmessage = (event) => {
       const receivedMessage: IMessage = JSON.parse(event.data);
-      console.log(receivedMessage)
-      setMessages((prevMessages) => [receivedMessage, ...prevMessages]);
-      console.log(messages)
+      const messageWithKey = { ...receivedMessage, key: uuidv4() };
+      setMessages((prevMessages) => [messageWithKey, ...prevMessages]);
     };
-    socket.current.onclose = () => console.log('Соединение закрыто');
     socket.current.onerror = (error) => console.error('Ошибка соединения', error);
+    socket.current.onclose = () => console.log('Соединение закрыто');
 
     return () => {
       socket.current?.close();
@@ -42,10 +41,11 @@ function Chat() {
     if (!messageText.trim() || !socket.current) return;
 
     const socketMessage: socketMessage = {
-      message: messageText
-    }
+      message: messageText,
+    };
 
     const newMessage: IMessage = {
+      key: uuidv4(),
       message: messageText,
       sender: 'user',
       timestamp: Date.now(),
@@ -82,17 +82,17 @@ function Chat() {
       <div className={styles.messages}>
         {messages.map((msg) =>
           msg.sender === 'user' ? (
-            <div key={`${msg.sender}-${msg.timestamp}`} className={styles.userMessage}>
+            <div key={msg.key} className={styles.userMessage}>
               <div className={styles.titleWrapper}>
                 <p className={styles.timestamp}>{getDate(msg.timestamp)}</p>
               </div>
               {msg.message}
             </div>
           ) : (
-            <div key={`${msg.sender}-${msg.timestamp}`} className={styles.botMessage}>
+            <div key={msg.key} className={styles.botMessage}>
               <div className={styles.titleWrapper}>
-                <p className={styles.sender}>Аркадий Иванов</p>
-                <p className={styles.timestamp}>{getDate(msg.timestamp)}</p>
+                <p className={styles.sender}>Вика</p>
+                <p className={styles.timestamp}>{getDate(Date.now())}</p>
               </div>
               {msg.message}
             </div>
