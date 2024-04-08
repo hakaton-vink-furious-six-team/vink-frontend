@@ -1,5 +1,4 @@
 import type React from 'react';
-import type { ChangeEvent } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { type IMessage } from '../model/types/Message';
@@ -23,15 +22,14 @@ function Chat() {
   useEffect(() => {
     // Инициализация WebSocket соединения
     socket.current = new WebSocket(`ws://82.97.241.46/ws/chat/${chatRoom}/`);
-    // socket.current = new WebSocket(`ws://82.97.241.46/ws/chat/2/`);
     socket.current.onopen = () => console.log('Соединение установлено');
     socket.current.onmessage = (event) => {
       const receivedMessage: IMessage = JSON.parse(event.data);
       const messageWithKey = { ...receivedMessage, key: uuidv4() };
       setMessages((prevMessages) => [messageWithKey, ...prevMessages]);
     };
-    socket.current.onclose = () => console.log('Соединение закрыто');
     socket.current.onerror = (error) => console.error('Ошибка соединения', error);
+    socket.current.onclose = () => console.log('Соединение закрыто');
 
     return () => {
       socket.current?.close();
@@ -93,7 +91,7 @@ function Chat() {
           ) : (
             <div key={msg.key} className={styles.botMessage}>
               <div className={styles.titleWrapper}>
-                <p className={styles.sender}>Аркадий Иванов</p>
+                <p className={styles.sender}>Вика</p>
                 <p className={styles.timestamp}>{getDate(Date.now())}</p>
               </div>
               {msg.message}

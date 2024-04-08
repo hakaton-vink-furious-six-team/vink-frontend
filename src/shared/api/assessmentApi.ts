@@ -6,12 +6,20 @@ interface assessmentData {
 }
 
 export const assessmentApi = async (assessmentData: assessmentData) => {
-  await fetch(`${BASE_URL}chat_rate/`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(assessmentData),
+  try {
+    const response = await fetch(`${BASE_URL}chat_rate/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(assessmentData),
+    });
+    if (response.ok) {
+      return true;
+    }
+  } catch (error: any) {
+    const errorMessage = `Ошибка при запросе postForm: ${error.message}`;
+    console.error(errorMessage);
   }
-  )
+  return false;
 };
