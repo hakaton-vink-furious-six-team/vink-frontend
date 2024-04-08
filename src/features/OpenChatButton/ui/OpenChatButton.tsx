@@ -14,6 +14,10 @@ function OpenChatButton() {
     setIsExpanded(!isExpanded);
   };
 
+  const openLink = () => {
+    window.open('https://t.me/vinkbotaibyygptanothechat_bot');
+  }
+
   const ButtonIcon = isExpanded ? CloseIcon : ChatIcon;
 
   return (
@@ -21,7 +25,7 @@ function OpenChatButton() {
       <div className={`${styles.additionalButtonContainer} ${isExpanded ? styles.expanded : ''}`}>
         {isExpanded && (
           <>
-            <button type="button" className={styles.tgIcon} aria-label="перейти в телеграмм">
+            <button onClick={openLink} type="button" className={styles.tgIcon} aria-label="перейти в телеграмм">
               <TgIcon />
             </button>
             <button

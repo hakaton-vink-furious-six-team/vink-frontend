@@ -6,6 +6,7 @@ import { emojiList } from '../utils/utils';
 import { ReactComponent as EmojiListIcon } from '../assets/emoji.svg';
 import { chatNameValue } from '../../../entity/chatName/chatNameSlice';
 import { useAppSelector } from '../../../app/store/hooks';
+import { wsURL } from '../../../shared/constant/api';
 import styles from './Chat.module.scss';
 
 function Chat() {
@@ -21,7 +22,7 @@ function Chat() {
 
   useEffect(() => {
     // Инициализация WebSocket соединения
-    socket.current = new WebSocket(`ws://82.97.241.46/ws/chat/${chatRoom}/`);
+    socket.current = new WebSocket(`${wsURL}${chatRoom}/`);
     socket.current.onopen = () => console.log('Соединение установлено');
     socket.current.onmessage = (event) => {
       const receivedMessage: IMessage = JSON.parse(event.data);
