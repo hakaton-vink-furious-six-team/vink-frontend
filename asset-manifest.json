@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/vink-frontend/static/css/main.5f263f02.css",
-    "main.js": "/vink-frontend/static/js/main.138c01bf.js",
+    "main.js": "/vink-frontend/static/js/main.b46e07ce.js",
     "static/media/emoji.svg": "/vink-frontend/static/media/emoji.b0c13a9a8140b744e37a44e2dce915d9.svg",
     "static/media/arrow.svg": "/vink-frontend/static/media/arrow.e3a8916133ff4e82131a.svg",
     "static/media/chat.svg": "/vink-frontend/static/media/chat.3cfb762e8e4307aaf78c8e56bc758ec4.svg",
@@ -10,10 +10,10 @@
     "static/media/closeChat.svg": "/vink-frontend/static/media/closeChat.664bb27a619ee31d28c14d1855b5eb4e.svg",
     "static/media/close.svg": "/vink-frontend/static/media/close.d01a6ec9316827d38a1e06f1d8a6b446.svg",
     "main.5f263f02.css.map": "/vink-frontend/static/css/main.5f263f02.css.map",
-    "main.138c01bf.js.map": "/vink-frontend/static/js/main.138c01bf.js.map"
+    "main.b46e07ce.js.map": "/vink-frontend/static/js/main.b46e07ce.js.map"
   },
   "entrypoints": [
     "static/css/main.5f263f02.css",
-    "static/js/main.138c01bf.js"
+    "static/js/main.b46e07ce.js"
   ]
 }
