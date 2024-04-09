@@ -1,3 +1,3 @@
-export const BASE_URL = 'https://82.97.241.46/api/v1/';
+export const BASE_URL = 'http://backend:8000/api/v1/';
 
-export const wsURL = 'wss://82.97.241.46/ws/chat/';
+export const wsURL = 'ws://backend:8000/ws/chat/';
